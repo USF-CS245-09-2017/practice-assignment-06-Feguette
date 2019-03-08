@@ -17,7 +17,7 @@ public class Practice06Test {
 	}
 	
 	
-	public void clearData() {
+	public void clearData() throws Exception{
 		while (!queue.empty()) {
 			queue.dequeue();
 		}
@@ -27,27 +27,26 @@ public class Practice06Test {
 	}
 	
 	
-	public boolean isPalindrome(String item) {
-		clearData();
-		for (int i = 0; i < item.length(); i++) {
-			String substring = item.substring(i, i+1).toLowerCase();
-			if (substring.matches("[a-z]+")) {
-				stack.push(item.substring(i, i+1));
-				queue.enqueue(item.substring(i, i+1));
+	public boolean isPalindrome(String item) throws Exception {
+			clearData();
+			for (int i = 0; i < item.length(); i++) {
+				String substring = item.substring(i, i + 1).toLowerCase();
+				if (substring.matches("[a-z]+")) {
+					stack.push(item.substring(i, i + 1));
+					queue.enqueue(item.substring(i, i + 1));
+				}
 			}
-		}
 
-		while (! stack.empty() && ! queue.empty()) {
-			if (! stack.pop().equals(queue.dequeue())) {
-				return false;
+			while (!stack.empty() && !queue.empty()) {
+				if (!stack.pop().equals(queue.dequeue())) {
+					return false;
+				}
 			}
-		}
-		
-		// At this point, the stack AND the queue should be empty. But check in case...
-		if (!stack.empty() || ! queue.empty())
-			return false;
-		
-		return true;
+
+			// At this point, the stack AND the queue should be empty. But check in case...
+			if (!stack.empty() || !queue.empty())
+				return false;
+			return true;
 	}
 	
 	
