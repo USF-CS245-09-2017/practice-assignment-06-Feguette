@@ -38,7 +38,7 @@ public class ArrayQueue<T> implements Queue<T>{
     private void expand() {
         T[] temp = (T[])(new Object[2*array.length]);
         for (int i = 0; i < size; i++)
-            temp[i] = array[(head+i)%array.length];
+            temp[i] = array[(head + i)%array.length];
         head = 0;
         array = temp;
     }
